@@ -1,0 +1,40 @@
+buildscript {
+    ext.kotlin_version = '1.1.51'
+    ext.arch_components_version = '1.0.0'
+    ext.butter_knife_version = '8.8.1'
+    ext.okhttp_version = '3.9.0'
+    ext.rx_java_version = '2.1.5'
+    ext.rx_java_android_version = '2.0.1'
+    ext.retrofit_version = '2.3.0'
+    ext.moshi_version = '1.5.0'
+    ext.dagger_version = '2.12'
+    ext.play_services_version = '11.6.0'
+    ext.support_libraries_version = '26.1.0'
+    ext.rx_bindings_version = '2.0.0'
+    ext.butter_knife_version = '8.8.1'
+    ext.constraint_layout_version = '1.0.2'
+    ext.junit_version = '4.12'
+    ext.mockito_kotlin_version = '1.5.0'
+    ext.android_test_runner_version = '1.0.1'
+    ext.espresso_version = '3.0.1'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

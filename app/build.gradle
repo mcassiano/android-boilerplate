@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "me.cassiano.boilerplate"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // runtime dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // android support libraries
+    implementation "com.android.support:appcompat-v7:$support_libraries_version"
+    implementation "com.android.support:recyclerview-v7:$support_libraries_version"
+    implementation "com.android.support:design:$support_libraries_version"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+
+    // misc dependencies
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rx_bindings_version"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:$rx_bindings_version"
+    implementation "com.jakewharton:butterknife:$butter_knife_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_java_android_version"
+    implementation "android.arch.lifecycle:runtime:$arch_components_version"
+    implementation "android.arch.lifecycle:extensions:$arch_components_version"
+    implementation "android.arch.persistence.room:runtime:$arch_components_version"
+    implementation "android.arch.persistence.room:rxjava2:$arch_components_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.android.gms:play-services-location:$play_services_version"
+
+    // annotation processing dependencies
+    kapt "android.arch.persistence.room:compiler:$arch_components_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.jakewharton:butterknife-compiler:$butter_knife_version"
+    kapt "android.arch.lifecycle:compiler:$arch_components_version"
+
+    // testing dependencies
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version"
+    testImplementation("android.arch.core:core-testing:$arch_components_version", {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
+
+    androidTestImplementation "com.android.support.test:runner:$android_test_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+
+}
