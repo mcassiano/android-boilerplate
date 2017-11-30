@@ -58,6 +58,8 @@ class EntityViewModel(private val repository: EntityRepositoryContract) : ViewMo
                             .onErrorReturn { EntityViewState.error(it) }
                 }
                 .doOnNext({ Log.d("New state", it.toString()) })
+                .doOnSubscribe({ Log.d("New state", "New View model started") })
+                .doOnDispose({ Log.d("New state", "View model stopped") })
                 .subscribe { state.postValue(it) })
     }
 }

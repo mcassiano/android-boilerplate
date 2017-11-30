@@ -13,10 +13,7 @@ class EntityAdapter : RecyclerView.Adapter<ViewHolder>(), AutoUpdatableAdapter {
         autoNotify(old.entities, new.entities) { _, _ -> old == new }
     }
 
-
-    override fun getItemCount(): Int {
-        return data.entities.size
-    }
+    override fun getItemCount(): Int = data.entities.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val view = TextView(parent?.context).apply {
