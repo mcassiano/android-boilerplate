@@ -3,7 +3,6 @@ package me.cassiano.boilerplate.features.feature.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.Scheduler
@@ -47,7 +46,6 @@ class EntityViewModel(private val repository: EntityRepositoryContract,
     private fun setupIntents() {
         disposables.add(intentsSubject
                 .compose(intentFilter)
-                .doOnNext({ Log.d("New intent", it.toString()) })
                 .switchMap {
                     when (it) {
                         is FeatureIntents.InitialLoadIntent -> repository.getEntities()
@@ -58,9 +56,7 @@ class EntityViewModel(private val repository: EntityRepositoryContract,
                             .subscribeOn(computationScheduler)
                             .onErrorReturn { EntityViewState.error(it) }
                 }
-                .doOnNext({ Log.d("New state", it.toString()) })
-                .doOnSubscribe({ Log.d("New state", "New View model started") })
-                .doOnDispose({ Log.d("New state", "View model stopped") })
+                .onErrorReturn { EntityViewState.error(it) }
                 .subscribe { state.postValue(it) })
     }
 }
