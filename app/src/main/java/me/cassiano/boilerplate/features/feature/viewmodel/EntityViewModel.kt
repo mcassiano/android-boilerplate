@@ -6,14 +6,15 @@ import android.arch.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
+import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import me.cassiano.boilerplate.data.EntityRepositoryContract
 import me.cassiano.boilerplate.features.feature.intents.FeatureIntents
 
 
-class EntityViewModel(private val repository: EntityRepositoryContract) : ViewModel() {
+class EntityViewModel(private val repository: EntityRepositoryContract,
+                      private var computationScheduler: Scheduler) : ViewModel() {
 
     private val disposables = CompositeDisposable()
 
@@ -54,7 +55,7 @@ class EntityViewModel(private val repository: EntityRepositoryContract) : ViewMo
                     }.toObservable()
                             .map { EntityViewState.success(it) }
                             .startWith(EntityViewState.loading())
-                            .subscribeOn(Schedulers.computation())
+                            .subscribeOn(computationScheduler)
                             .onErrorReturn { EntityViewState.error(it) }
                 }
                 .doOnNext({ Log.d("New state", it.toString()) })
