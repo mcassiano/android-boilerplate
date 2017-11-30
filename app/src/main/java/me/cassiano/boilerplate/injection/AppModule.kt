@@ -16,6 +16,7 @@ import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
@@ -62,6 +63,9 @@ abstract class AppModule {
             return OkHttpClient.Builder()
                     .addInterceptor(logging)
                     .cache(null)
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .readTimeout(10, TimeUnit.SECONDS)
+                    .writeTimeout(10, TimeUnit.SECONDS)
                     .build()
         }
 

@@ -31,7 +31,7 @@ abstract class FeatureActivityModule {
         @JvmStatic
         @Provides
         @Named("baseUrl")
-        fun providesBaseUrl() = "http://192.168.1.74:8000/"
+        fun providesBaseUrl() = "https://raw.githubusercontent.com/mcassiano/android-boilerplate/master/server/"
 
         @JvmStatic
         @Provides

@@ -10,18 +10,12 @@ data class EntityViewState(
     companion object {
 
         @JvmStatic
-        fun loading(): EntityViewState {
-            return EntityViewState(null, true, null)
-        }
+        fun loading(): EntityViewState = EntityViewState(null, true, null)
 
         @JvmStatic
-        fun success(data: List<Entity>): EntityViewState {
-            return EntityViewState(data, false, null)
-        }
+        fun success(data: List<Entity>): EntityViewState = EntityViewState(data, false, null)
 
         @JvmStatic
-        fun error(error: Throwable): EntityViewState {
-            return EntityViewState(null, false, error)
-        }
+        fun error(error: Throwable): EntityViewState = EntityViewState(null, false, error)
     }
 }
