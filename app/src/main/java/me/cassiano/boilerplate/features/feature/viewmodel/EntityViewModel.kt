@@ -5,12 +5,12 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.Observable
+import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import me.cassiano.boilerplate.data.EntityRepositoryContract
 import me.cassiano.boilerplate.features.feature.intents.FeatureIntents
-import io.reactivex.ObservableTransformer
 
 
 class EntityViewModel(private val repository: EntityRepositoryContract) : ViewModel() {

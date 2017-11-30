@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout
